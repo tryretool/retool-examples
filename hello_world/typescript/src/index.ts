@@ -1,4 +1,4 @@
-import { RetoolSDK } from "@hdoan_741/rtsdk";
+import { RetoolSDK } from "rtsdk-dev";
 
 // Load environment variables from .env file
 import "dotenv/config";
@@ -6,8 +6,8 @@ import "dotenv/config";
 const sdk = new RetoolSDK({
   apiToken: process.env.RETOOL_SDK_API_TOKEN || "api_token",
   host: process.env.RETOOL_SDK_HOST || "host",
-  resourceId: process.env.RETOOL_SDK_ID,
-  environment: process.env.RETOOL_SDK_ENV || "production",
+  resourceId: process.env.RETOOL_SDK_ID || "resource_id",
+  environmentName: process.env.RETOOL_SDK_ENV || "production",
   pollingIntervalMs: parseInt(process.env.RETOOL_SDK_POLL_INTERVAL || "1000"),
   version: process.env.RETOOL_SDK_VERSION || "0.0.1",
   logLevel: (process.env.RETOOL_SDK_LOG_LEVEL as any) || "info",
@@ -19,7 +19,28 @@ sdk.register({
     name: { type: "string", doc: "your name", required: true },
   },
   impl: async (args, _context) => {
-    return `Hellooo, ${args.name}!`;
+    return `Hello, ${args.name}!`;
+  },
+});
+
+sdk.register({
+  name: "plusTwoNumbers",
+  args: {
+    firstNumber: {
+      type: "number",
+      title: "First number",
+      description: "Enter your first number",
+      required: true,
+    },
+    secondNumber: {
+      type: "number",
+      title: "Second number",
+      description: "Enter your second number",
+      required: true,
+    },
+  },
+  impl: async (args, context) => {
+    return args.firstNumber + args.secondNumber;
   },
 });
 
