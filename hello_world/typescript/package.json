@@ -11,8 +11,8 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@hdoan_741/rtsdk": "^0.0.17",
     "dotenv": "^16.3.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "rtsdk-dev": "^0.0.21"
   }
 }
