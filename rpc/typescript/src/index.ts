@@ -16,7 +16,7 @@ const sdk = new RetoolSDK({
 sdk.register({
   name: "helloWorld",
   args: {
-    name: { type: "string", doc: "your name", required: true },
+    name: { type: "string", description: "Your name", required: true },
   },
   impl: async (args, _context) => {
     return `Hello, ${args.name}!`;
@@ -28,18 +28,16 @@ sdk.register({
   args: {
     firstNumber: {
       type: "number",
-      title: "First number",
       description: "Enter your first number",
       required: true,
     },
     secondNumber: {
       type: "number",
-      title: "Second number",
       description: "Enter your second number",
       required: true,
     },
   },
-  impl: async (args, context) => {
+  impl: async (args, _context) => {
     return args.firstNumber + args.secondNumber;
   },
 });
