@@ -7,12 +7,13 @@
     "example": "nodemon --watch src --watch .env -e ts src/index.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.5.3",
-    "typescript": "^5.1.6"
+    "nodemon": "^2.0.15",
+    "@types/node": "15.12.1",
+    "typescript": "5.2.2",
+    "ts-node": "^10.0.0"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
-    "nodemon": "^3.0.1",
-    "rtsdk-dev": "^0.0.35"
+    "rtsdk-dev": "^0.0.46"
   }
 }
