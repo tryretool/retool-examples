@@ -1,31 +1,31 @@
-import { RetoolSDK } from "rtsdk-dev";
+import { RetoolRPC } from "rtsdk-dev";
 
 // Load environment variables from .env file
 import "dotenv/config";
 
-const sdk = new RetoolSDK({
-  apiToken: process.env.RETOOL_SDK_API_TOKEN || "api_token",
-  host: process.env.RETOOL_SDK_HOST || "host",
-  resourceId: process.env.RETOOL_SDK_ID || "resource_id",
-  environmentName: process.env.RETOOL_SDK_ENV || "production",
-  pollingIntervalMs: parseInt(process.env.RETOOL_SDK_POLL_INTERVAL || "1000"),
-  version: process.env.RETOOL_SDK_VERSION || "0.0.1",
-  logLevel: (process.env.RETOOL_SDK_LOG_LEVEL as any) || "info",
+const retoolRpc = new RetoolRPC({
+  apiToken: process.env.RETOOL_RPC_API_TOKEN || "api_token",
+  host: process.env.RETOOL_RPC_HOST || "host",
+  resourceId: process.env.RETOOL_RPC_RESOURCE_ID || "resource_id",
+  environmentName: process.env.RETOOL_RPC_ENV || "production",
+  pollingIntervalMs: parseInt(process.env.RETOOL_RPC_POLL_INTERVAL || "1000"),
+  version: process.env.RETOOL_RPC_VERSION || "0.0.1",
+  logLevel: (process.env.RETOOL_RPC_LOG_LEVEL as any) || "info",
 });
 
-sdk.register({
+retoolRpc.register({
   name: "helloWorld",
-  args: {
+  arguments: {
     name: { type: "string", description: "Your name", required: true },
   },
-  impl: async (args, _context) => {
+  implementation: async (args, _context) => {
     return `Hello, ${args.name}!`;
   },
 });
 
-sdk.register({
+retoolRpc.register({
   name: "plusTwoNumbers",
-  args: {
+  arguments: {
     firstNumber: {
       type: "number",
       description: "Enter your first number",
@@ -37,9 +37,13 @@ sdk.register({
       required: true,
     },
   },
-  impl: async (args, _context) => {
+  implementation: async (args, _context) => {
     return args.firstNumber + args.secondNumber;
   },
 });
 
-sdk.listen();
+if (process.env.CLI_GENERATED_MESSAGE) {
+  console.log("\n" + process.env.CLI_GENERATED_MESSAGE + "\n");
+}
+
+retoolRpc.listen();
