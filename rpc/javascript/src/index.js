@@ -1,7 +1,7 @@
-import { RetoolRPC } from "retoolrpc";
+const { RetoolRPC } = require("retoolrpc");
 
 // Load environment variables from .env file
-import "dotenv/config";
+require('dotenv').config(); 
 
 const rpc = new RetoolRPC({
   apiToken: process.env.RETOOL_RPC_API_TOKEN || "api_token",

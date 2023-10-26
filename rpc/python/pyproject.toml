@@ -1,0 +1,38 @@
+[build-system]
+requires = [ "poetry-core",]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "retool-examples/python"
+version = "0.1.8"
+description = "Python package for Retool RPC"
+authors = [ "huytool157 <pham@retool.com>",]
+license = "MIT"
+homepage = "https://retool.com"
+
+[tool.black]
+preview = true
+
+[tool.ruff]
+src = [ "src",]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asyncio = "^3.4.3"
+httpx = "^0.25.0"
+retoolrpc = "^0.1.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
+ruff = "^0.0.292"
+pytest = "^7.4.2"
+semver = "^3.0.2"
+toml = "^0.10.2"
+types-toml = "^0.10.8.7"
+pytest-asyncio = "^0.21.1"
+pytest-httpx = "^0.26.0"
+
+[tool.poetry.group.dev.dependencies.numpy]
+version = "^1.26.0"
+python = "^3.10,<3.13"
